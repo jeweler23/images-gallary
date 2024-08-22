@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import InputItem from '../item/InputItem.vue';
 import TagItem from '../item/TagItem.vue';
 import { usePostsStore } from '@/stores/postsStore';
@@ -9,15 +9,10 @@ const postsStore = usePostsStore();
 const title = ref('');
 const isActive = ref(false);
 const textButton = computed(() => isActive.value ? 'Скрыть фильтр' : 'Фильтр');
-const activeTag = ref<string[]>([]);
+const activeTags = postsStore.activeTags;
 
 function toggleStatusTag(tag: string) {
-	if (!activeTag.value.includes(tag)) {
-		activeTag.value.push(tag);
-	}
- else {
-	activeTag.value = activeTag.value.filter(item => item !== tag);
-	}
+	postsStore.toggleStatusTag(tag);
 }
 </script>
 
@@ -31,7 +26,7 @@ function toggleStatusTag(tag: string) {
 				<InputItem v-model:value="title" />
 			</div>
 			<div class="flex gap-3">
-				<button v-show="activeTag.length > 0" class="text-blue" @click="activeTag = []">
+				<button v-show="activeTags.length > 0" class="text-blue" @click="activeTags = []">
 					Очистить
 				</button>
 				<button class="flex items-center gap-3 text-spare" @click="isActive = !isActive">
@@ -42,9 +37,21 @@ function toggleStatusTag(tag: string) {
 		<Transition>
 			<ul v-show="isActive" class="flex gap-3 transition-all bg-white w-full ease-linear absolute top-[150%]">
 				<li v-for="tag in postsStore.allTags" :key="tag">
-					<TagItem :title="tag" :is-active="activeTag.includes(tag)" @add-active-tag="toggleStatusTag" />
+					<TagItem :title="tag" :is-active="activeTags.includes(tag)" @add-active-tag="toggleStatusTag" />
 				</li>
 			</ul>
 		</Transition>
 	</section>
 </template>
+
+<style lang="scss" scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

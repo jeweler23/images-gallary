@@ -3,7 +3,7 @@ import { computed } from 'vue';
 
 interface ITag {
   title: string;
-  isActive: boolean;
+  isActive: boolean | null;
 }
 const props = defineProps<ITag>();
 defineEmits<(event: 'addActiveTag', title: string) => void>();
@@ -16,6 +16,6 @@ const isActiveClass = computed(() => props.isActive ? 'bg-blue text-white' : 'bg
 <template>
 	<div :class="isActiveClass" class="py-1 px-2 rounded-tag flex gap-3 cursor-pointer" @click="$emit('addActiveTag', props.title)">
 		<span>{{ title }}</span>
-		<img :src="srcLink" alt="" class="w-4">
+		<img v-if="isActive !== null" :src="srcLink" alt="" class="w-4">
 	</div>
 </template>

@@ -3,5 +3,5 @@ import AppMainView from './views/AppMainView.vue';
 </script>
 
 <template>
-	<AppMainView />
+	<AppMainView class="w-full h-full" />
 </template>

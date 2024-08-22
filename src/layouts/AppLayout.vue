@@ -2,7 +2,7 @@
 	<header>
 		<slot name="header" />
 	</header>
-	<main>
+	<main class="">
 		<slot name="main" />
 	</main>
 </template>

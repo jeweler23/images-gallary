@@ -5,7 +5,11 @@
 
 /* @import './styles/variables.scss';  */
 body {
-  @apply bg-main; 
+  @apply bg-main w-full h-[100vh]; 
+}
+
+#app{
+  @apply w-full h-full
 }
 
 .inactive-link{
