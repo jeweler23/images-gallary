@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, shallowRef } from 'vue';
+import { ref } from 'vue';
 
 const setPages = ref('Блог');
 </script>

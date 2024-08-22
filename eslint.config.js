@@ -12,7 +12,7 @@ export default antfu({
     overrides: {
       'no-return-await': ['error'],
       'node/prefer-global/process': ['error', 'always'],
-      'style/indent': ['off'], // Сломано в .vue файлах
+      'style/indent': ['off'],
     },
   },
   typescript: true,

@@ -8,11 +8,13 @@ module.exports = {
       },
       colors: {
         blue: '#3E97FF',
+        spare_blue: '#EEF6FF',
         main: '#F1F1F2',
         spare: '#A1A5B7',
       },
       borderRadius: {
-        main: '20px',
+        main: '10px',
+        tag: '20px',
       },
   },
 },
