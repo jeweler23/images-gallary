@@ -22,7 +22,6 @@ function selectPost(post: IPost) {
 	<ul v-if="postStore.activePost.length > 0" class="grid xl:grid-cols-[1fr_1fr_1fr] sm:grid-cols-[1fr_1fr] gap-5 justify-center mt-5 bg-white tableet:py-8 py-2 lg:px-20 sm:px-[14px] px-[14px] rounded-md">
 		<transition-group
 			name="list"
-
 			enter-active-class="transition transform ease-out duration-300"
 			enter-from-class="opacity-0 translate-y-2"
 			enter-to-class="opacity-100 translate-y-0"

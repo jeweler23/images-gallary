@@ -1,45 +1,45 @@
 # images-gallery
 
-This template should help get you started developing with Vue 3 in Vite.
+Этот проект SPA - в нем реализована возможность отображения галереи изображений с их фильтрацией и просмотра подробной информации.
 
-## Recommended IDE Setup
+технологии- TS,VUE,Pinia,TAILWIND,SASS
+eslint config - antfu
+formatter - eslint stylistic
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Архитектура:
+-view-директория - содержит внешний вид главной странцы приложения (в дальнейшем можно добавлять другие view)
+-layouts - содержит обертки для view (сейчас там обертка для главной страницы и модального окна)
+-components:
+--widget - независимые интерфейсы, которые выполняют основную логику приложения (нафигация(я так понял она подразумевалась по макету, но второй страницы не было, я добавил ui на всякий, можно будет чуть переписать под переключение страниц),фильтрация,отоброжение элеменов)
+--items - элементы, которые можно переиспользовать в widgets
+--ui - графические элементы (заглушка)
+--test - для тестирования (на данный момент не реализовано, так как это не обязательный пункт, я сделаю его в отдельной ветке)
+-stores - содержит глобальное хранилище. Для данной реализации можно было всю логику хранить в composables и передавать информацию через props/provide в дочерние элементы, но при увеличении сложности приложения, в любом случае нужно будет использовать хранилище
+-types - директория с типами
 
-## Type Support for `.vue` Imports in TS
+Что можно улучшить:
+1. Добавить тесты.
+2. Сделать более грамотный адаптив (есть моменты, где элементы спрятаны через hidden,хотя правильнее через resize сделать).
+3. Добавить слайдер для постов.
+4. Обернуть некоторую логику в компоненты, которая содержится в разных частях приложения.
+5. Добавить больше css переменных для более быстрой стилизации.
+6. Добавить более красивую анимацию.
+7. Сделать более поддерживаемую архитектуру.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Project Setup , Compile and Hot-Reload for Development, Type-Check, Compile and Minify for Production
 
 ```sh
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Run Unit Tests with [Vitest](https://vitest.dev/), Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run test:unit
-```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
 npm run lint
 ```
