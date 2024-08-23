@@ -255,5 +255,5 @@ watch([activeTags, titleFilter], () => {
     }
   }
 
-  return { postsArray, allTags, titleFilter, activeTags, toggleStatusTag, activePost };
+  return { postsArray, allTags, titleFilter, activeTags, toggleStatusTag, activePost, filteredPost };
 });
