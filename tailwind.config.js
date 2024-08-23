@@ -16,8 +16,15 @@ module.exports = {
         main: '10px',
         tag: '20px',
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      screens: {
+        tableet: '801px',
+        phone: '375px',
+      },
+    },
   },
-},
   variants: {
     extend: {},
   },

@@ -1,15 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-/* @import './styles/variables.scss';  */
+
+
+
 body {
-  @apply bg-main w-full h-[100vh]; 
+  @apply bg-main w-full h-[100vh] font-sans flex justify-center; 
 }
 
 #app{
-  @apply w-full h-full
+  @apply 2xl:w-[1400px] xl:w-[1200px] lg:w-[1000px] tableet:w-[960px]  h-full w-full
 }
 
 .inactive-link{

@@ -1,8 +1,9 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
+import type { IPost } from '@/types/post';
 
 export const usePostsStore = defineStore('posts', () => {
-  const postsArray = ref([{
+  const postsArray = ref<IPost[]>([{
     id: 1,
     title: 'Вдохновение в каждом шаге',
     description: 'Каждое утро, когда я просыпаюсь в палатке, окружённой лесом и горами, я чувствую, как природа наполняет меня энергией. Величественные вершины, покрытые зелёными лесами, напоминают мне о том, как важно сохранять связь с природой. Каждый шаг по тропе — это не просто движение вперёд, это путешествие внутрь себя, где я нахожу вдохновение и силу. В такие моменты я понимаю, что настоящая красота мира скрыта в его простоте и величии.',
@@ -15,6 +16,7 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 2,
@@ -29,18 +31,22 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 3,
@@ -55,14 +61,17 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева1',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева2',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 4,
@@ -77,14 +86,17 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария 1Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария 2Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 5,
@@ -99,6 +111,7 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 6,
@@ -113,6 +126,7 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 7,
@@ -127,6 +141,7 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 8,
@@ -141,10 +156,12 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 9,
@@ -159,10 +176,12 @@ export const usePostsStore = defineStore('posts', () => {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }, {
     id: 10,
@@ -171,16 +190,18 @@ export const usePostsStore = defineStore('posts', () => {
     subtitle: 'Наши художники выражают всю красоту окружающего мира через творчество.',
     image: '10',
     tags: ['Животные', 'Природа'],
-    create_date_post: '13 апр', // скорее всего будет приходить в другом формате
+    create_date_post: '13 апр',
     timeRead: 10,
     comments: [{
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }, {
       author: 'Мария Гусева',
       description: 'Эти мгновения наполняют наши сердца радостью и любовью.',
       create_date_comment: '9.04.2024 в 14:54',
+      avatar: 'commentator',
     }],
   }]);
 
@@ -199,19 +220,32 @@ export const usePostsStore = defineStore('posts', () => {
   const activeTags = ref<string[]>([]);
 
   // Фильтр постов
-  const filterPost = computed(() => {
-    if (activeTags.value.length > 0) {
-      const result = [];
-      postsArray.value.forEach((post) => {
-        activeTags.value.forEach((tag) => {
-          if (post.tags.includes(tag) && !result.includes(post)) {
-            result.push(post);
-          }
+  const activePost = ref<IPost[]>(postsArray.value);
+
+  const filterPost = computed({
+    get() {
+      return activePost.value;
+    },
+    set(filterValue: string | string[]) {
+      if (Array.isArray(filterValue) && activeTags.value.length > 0) {
+        const result: IPost[] = [];
+        postsArray.value.forEach((post) => {
+          filterValue.forEach((tag) => {
+            if (post.tags.includes(tag) && !result.includes(post)) {
+              result.push(post);
+            }
+          });
         });
-      });
-      return result;
-    }
-    return postsArray.value;
+
+        activePost.value = result;
+        return;
+      }
+      else if (typeof filterValue === 'string' && filterValue.length > 0) {
+        activePost.value = activePost.value.filter(post => post.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()));
+        return;
+      }
+    activePost.value = postsArray.value;
+    },
   });
 
   function toggleStatusTag(tag: string) {
@@ -222,6 +256,7 @@ export const usePostsStore = defineStore('posts', () => {
     const indexTag = activeTags.value.findIndex(item => item === tag);
     activeTags.value.splice(indexTag, 1);
     }
+    filterPost.value = activeTags.value;
   }
 
   return { postsArray, allTags, activeTags, toggleStatusTag, filterPost };

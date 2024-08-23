@@ -13,9 +13,7 @@ const postsStore = usePostsStore();
 			<Header />
 		</template>
 		<template #main>
-			<div class=" w-full h-full ">
-				<CardList class="" />
-			</div>
+			<CardList />
 		</template>
 	</AppLayout>
 </template>

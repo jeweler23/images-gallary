@@ -14,8 +14,8 @@ const isActiveClass = computed(() => props.isActive ? 'bg-blue text-white' : 'bg
 </script>
 
 <template>
-	<div :class="isActiveClass" class="py-1 px-2 rounded-tag flex gap-3 cursor-pointer" @click="$emit('addActiveTag', props.title)">
-		<span>{{ title }}</span>
+	<div :class="isActiveClass" class="py-1 px-2 rounded-tag flex md:gap-3 cursor-pointer" @click="$emit('addActiveTag', props.title)">
+		<span class="md:text-base text-sm">{{ title }}</span>
 		<img v-if="isActive !== null" :src="srcLink" alt="" class="w-4">
 	</div>
 </template>

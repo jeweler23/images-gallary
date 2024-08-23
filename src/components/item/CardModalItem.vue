@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import TagItem from './TagItem.vue';
 import type { IPost } from '@/types/post';
 
@@ -8,8 +8,14 @@ interface Post {
 };
 
 const props = defineProps<Post>();
+defineEmits<{
+	(event: 'close'): void;
+}>();
 
 const srcImage = computed(() => new URL(`../../assets/images/${props.post.image}.png`, import.meta.url).href);
+
+const message = ref('');
+const isMessageBig = computed(() => !(message.value.length < 251));
 
 const comment = computed(() => {
   if (props.post.comments.length === 1) {
@@ -23,12 +29,19 @@ const comment = computed(() => {
   }
   return `${props.post.comments.length} ком.`;
 });
+
+function setImageCommentator(src) {
+	return new URL(`../../assets/images/${src}.png`, import.meta.url).href;
+}
 </script>
 
 <template>
-	<div class="w-[630px] flex flex-col gap-3 cursor-pointer p-3">
-		<h3 class="text-[22px] font-semibold">
+	<div class="w-[630px] flex flex-col gap-3  p-3">
+		<h3 class="text-[22px] font-semibold flex justify-between item-center">
 			{{ post.title }}
+			<button class="w-[20px] flex justify-center items-center" @click="$emit('close')">
+				<img src="@/assets/icons/close.svg" alt="close button">
+			</button>
 		</h3>
 		<div class="flex gap-3 text-[#7E8299]">
 			<p>{{ post.create_date_post }}</p>
@@ -54,11 +67,26 @@ const comment = computed(() => {
 		</ul>
 		<div>
 			<h4>Комментариев {{ post.comments.length }}</h4>
-			<textarea v-model="message" placeholder="Введите комментарий" class="border w-full" />
+			<textarea v-model="message" placeholder="Введите комментарий" class="border outline-none w-full " :class="{ 'border-[#F1416C]': isMessageBig, 'border-blue': message.length > 0 && !isMessageBig }" />
+			<transition>
+				<div v-show="message.length > 0">
+					<p class="text-[#7E8299]">
+						<span :class="{ 'text-[#F1416C]': isMessageBig }">{{ message.length }}</span> из 250 символов
+					</p>
+					<div class="flex gap-[10px] justify-end">
+						<button class="p-[6px] rounded-md bg-[#EEF6FF] text-blue w-[120px]" @click="message = ''">
+							Отмена
+						</button>
+						<button class="p-[6px] rounded-md  text-white w-[120px]" :disabled="isMessageBig" :class="{ 'bg-[#F9F9F9] text-[#D8D8E5]': isMessageBig, 'bg-blue': !isMessageBig }">
+							Опубликовать
+						</button>
+					</div>
+				</div>
+			</transition>
 		</div>
 		<ul class="flex flex-col gap-3">
 			<li v-for="(comment, index) in post.comments" :key="index" class="flex gap-3 items-center">
-				<img src="" alt="" class="w-[38px] h-[38px]">
+				<img :src="setImageCommentator(comment.avatar)" alt="" class="w-[38px] h-[38px]">
 				<div>
 					<p class="text-base font-semibold text-[#181C32]">
 						{{ comment.author }}
@@ -74,3 +102,15 @@ const comment = computed(() => {
 		</ul>
 	</div>
 </template>
+
+<style scoped lang="scss">
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

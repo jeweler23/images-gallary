@@ -26,17 +26,19 @@ const comment = computed(() => {
 </script>
 
 <template>
-	<div class="w-[400px] flex flex-col gap-3 cursor-pointer">
-		<img :src="srcImage" alt="info image" class="w-[400px] h-[250px]">
-		<div class="flex gap-3 text-[#7E8299]">
-			<p>{{ post.create_date_post }}</p>
-			•
-			<p class="flex gap-2">
-				<img src="@/assets/icons/time.svg" alt="">{{ post.timeRead }} мин
+	<div class="2xl:w-[400px] flex flex-col gap-[5px] cursor-pointer lg:w-[330px] w-full ">
+		<img :src="srcImage" alt="info image" class="phone:w-[325px] tableet:h-[250px] md:h-[220px] phone:h-[200px] sm:w-full m-auto sm:m-0">
+		<div class="flex md:gap-[9px] text-[#7E8299] w-full items-center gap-[6px]">
+			<p class="md:text-sm text-xs">
+				{{ post.create_date_post }}
 			</p>
 			•
-			<p class="flex gap-2">
-				<img src="@/assets/icons/comment.svg" alt="">{{ comment }}
+			<p class="flex gap-1 items-center md:text-base text-sm">
+				<img src="@/assets/icons/time.svg" alt=""><span class="md:text-sm text-xs"> {{ post.timeRead }}  мин</span>
+			</p>
+			•
+			<p class="flex gap-1 items-center md:text-base text-sm">
+				<img src="@/assets/icons/comment.svg" alt=""><span class="md:text-sm text-xs">{{ comment }}</span>
 			</p>
 		</div>
 		<h3 class="text-[22px] font-semibold">
