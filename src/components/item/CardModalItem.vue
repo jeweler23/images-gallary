@@ -86,7 +86,7 @@ function setImageCommentator(src: string) {
 		</div>
 		<ul class="flex flex-col gap-3">
 			<li v-for="(comment, index) in post.comments" :key="index" class="flex gap-3 items-center">
-				<img :src="setImageCommentator(comment.avatar)" alt="" class="w-[38px] h-[38px]">
+				<img :src="setImageCommentator(comment.avatar)" alt="avatar" class="w-[38px] h-[38px]">
 				<div>
 					<p class="text-base font-semibold text-[#181C32]">
 						{{ comment.author }}
