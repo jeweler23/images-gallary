@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { defineStore } from 'pinia';
 import type { IPost } from '@/types/post';
 
@@ -218,35 +218,32 @@ export const usePostsStore = defineStore('posts', () => {
   });
 
   const activeTags = ref<string[]>([]);
+  const titleFilter = ref('');
 
   // Фильтр постов
   const activePost = ref<IPost[]>(postsArray.value);
 
-  const filterPost = computed({
-    get() {
-      return activePost.value;
-    },
-    set(filterValue: string | string[]) {
-      if (Array.isArray(filterValue) && activeTags.value.length > 0) {
-        const result: IPost[] = [];
-        postsArray.value.forEach((post) => {
-          filterValue.forEach((tag) => {
-            if (post.tags.includes(tag) && !result.includes(post)) {
-              result.push(post);
-            }
-          });
-        });
+function filteredPost() {
+  let filteredPosts = postsArray.value;
 
-        activePost.value = result;
-        return;
-      }
-      else if (typeof filterValue === 'string' && filterValue.length > 0) {
-        activePost.value = activePost.value.filter(post => post.title.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()));
-        return;
-      }
-    activePost.value = postsArray.value;
-    },
-  });
+  if (titleFilter.value.length > 0) {
+    filteredPosts = filteredPosts.filter(post =>
+      post.title.toLocaleLowerCase().includes(titleFilter.value.toLocaleLowerCase()),
+    );
+  }
+
+  if (activeTags.value.length > 0) {
+    filteredPosts = filteredPosts.filter(post =>
+      activeTags.value.every(tag => post.tags.includes(tag)),
+    );
+  }
+
+  activePost.value = filteredPosts;
+}
+
+watch([activeTags, titleFilter], () => {
+  filteredPost();
+}, { deep: true });
 
   function toggleStatusTag(tag: string) {
     if (!activeTags.value.includes(tag)) {
@@ -256,8 +253,7 @@ export const usePostsStore = defineStore('posts', () => {
     const indexTag = activeTags.value.findIndex(item => item === tag);
     activeTags.value.splice(indexTag, 1);
     }
-    filterPost.value = activeTags.value;
   }
 
-  return { postsArray, allTags, activeTags, toggleStatusTag, filterPost };
+  return { postsArray, allTags, titleFilter, activeTags, toggleStatusTag, activePost };
 });

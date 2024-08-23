@@ -15,6 +15,5 @@ export function useModal() {
     isOpen,
     open,
     close,
-   
   };
 }

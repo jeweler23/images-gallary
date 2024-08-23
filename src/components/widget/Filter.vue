@@ -7,21 +7,21 @@ import { usePostsStore } from '@/stores/postsStore';
 
 const postsStore = usePostsStore();
 
-const title = ref('');
 const isActive = ref(false);
 const textButton = computed(() => isActive.value ? 'Скрыть фильтр' : 'Фильтр');
 const activeTags = computed(() => postsStore.activeTags);
-
-// function toggleStatusTag(tag: string) {
-// 	postsStore.toggleStatusTag(tag);
-// }
-
-watch(title, () => {
-	postsStore.filterPost = title.value;
+const title = computed({
+  get() {
+    return postsStore.titleFilter;
+  },
+  set(newValue: string) {
+    postsStore.titleFilter = newValue;
+  },
 });
-watch(activeTags, () => {
-	postsStore.toggleStatusTag(activeTags.value);
-});
+
+function toggleStatusTag(tag: string) {
+	postsStore.toggleStatusTag(tag);
+}
 </script>
 
 <template>
@@ -56,7 +56,7 @@ watch(activeTags, () => {
 			>
 				<li v-for=" tag in postsStore.allTags" :key="tag">
 					<!-- @add-active-tag="toggleStatusTag" -->
-					<TagItem :title="tag" :is-active="activeTags.includes(tag)" />
+					<TagItem :title="tag" :is-active="activeTags.includes(tag)" @add-active-tag="toggleStatusTag" />
 				</li>
 			</ul>
 		</Transition>

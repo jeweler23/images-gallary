@@ -30,13 +30,13 @@ const comment = computed(() => {
   return `${props.post.comments.length} ком.`;
 });
 
-function setImageCommentator(src) {
+function setImageCommentator(src: string) {
 	return new URL(`../../assets/images/${src}.png`, import.meta.url).href;
 }
 </script>
 
 <template>
-	<div class="w-[630px] flex flex-col gap-3  p-3">
+	<div class="sm:w-[630px] flex flex-col gap-3 p-3 phone:w-[350px]">
 		<h3 class="text-[22px] font-semibold flex justify-between item-center">
 			{{ post.title }}
 			<button class="w-[20px] flex justify-center items-center" @click="$emit('close')">
@@ -54,7 +54,7 @@ function setImageCommentator(src) {
 				<img src="@/assets/icons/comment.svg" alt="">{{ comment }}
 			</p>
 		</div>
-		<img :src="srcImage" alt="info image" class="w-[600px] h-[373px] m-auto">
+		<img :src="srcImage" alt="info image" class="sm:w-[600px] h-[373px] m-auto">
 
 		<p class="text-base font-medium">
 			{{ post.description }}
