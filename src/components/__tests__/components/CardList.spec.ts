@@ -74,18 +74,21 @@ describe('cardList Component', () => {
 
     expect(cardtemComponents).toHaveLength(posts.length);
     // Телепорт
-
-    await wrapper.setData({
-      isOpen: true,
-      selectedPost: postStore.activePost[0],
-    });
+    wrapper.vm.isOpen = true;
+    wrapper.vm.selectedPost = postStore.activePost[0];
+    // await wrapper.setData({
+    //   isOpen: true,
+    //   selectedPost: postStore.activePost[0],
+    // });
     await wrapper.vm.$nextTick();
-    const body = document.body;
-    const modalComponents = body.querySelector('CardModalItem');
-   expect(modalComponents).toBeGreaterThan(0);
+    // const body = document.body;
+    const modalComponent = document.body.querySelector('.overflow-y-scroll');
+
+    expect(modalComponent).not.toBeNull();
+
     // проверка заглушки
     postStore.activePost = [];
-
+    wrapper.vm.isOpen = false;
     await wrapper.vm.$nextTick();
 
     const stub = wrapper.findComponent({ name: 'Stub' });
