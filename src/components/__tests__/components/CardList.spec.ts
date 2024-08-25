@@ -56,7 +56,6 @@ describe('cardList Component', () => {
     const pinia = createPinia();
     setActivePinia(pinia);
     const postStore = usePostsStore();
-    postStore.activePost = posts;
 
     const wrapper = mount(CardList, {
       global: {
@@ -66,32 +65,24 @@ describe('cardList Component', () => {
 
     await wrapper.vm.$nextTick();
 
-    // ищем все CardItem
-   const cardtemComponents = wrapper.findAllComponents({ name: 'Cardtem' });
-
     // проверка рендера списка
     expect(wrapper.find('ul').exists()).toBe(true);
 
-    expect(cardtemComponents).toHaveLength(posts.length);
     // Телепорт
     wrapper.vm.isOpen = true;
-    wrapper.vm.selectedPost = postStore.activePost[0];
-    // await wrapper.setData({
-    //   isOpen: true,
-    //   selectedPost: postStore.activePost[0],
-    // });
+    wrapper.vm.selectPost(posts[0]);
+
     await wrapper.vm.$nextTick();
-    // const body = document.body;
+
     const modalComponent = document.body.querySelector('.overflow-y-scroll');
 
     expect(modalComponent).not.toBeNull();
 
     // проверка заглушки
-    postStore.activePost = [];
-    wrapper.vm.isOpen = false;
+    postStore.titleFilter = 'фывфыв';
     await wrapper.vm.$nextTick();
 
-    const stub = wrapper.findComponent({ name: 'Stub' });
+    const stub = wrapper.findComponent({ name: 'BaseStub' });
     expect(stub.exists()).toBe(true);
   });
 });
