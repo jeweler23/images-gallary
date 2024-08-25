@@ -217,43 +217,27 @@ export const usePostsStore = defineStore('posts', () => {
     return [];
   });
 
-  const activeTags = ref<string[]>([]);
+  const activeTags = ref(new Set<string>());
   const titleFilter = ref('');
 
   // Фильтр постов
-  const activePost = ref<IPost[]>(postsArray.value);
 
-function filteredPost() {
-  let filteredPosts = postsArray.value;
+  const filterPosts = computed(() => {
+    return postsArray.value.filter((post) => {
+      const isTitleIncludes = post.title.toLowerCase().includes(titleFilter.value.toLowerCase());
+      const isTagIncludes = Array.from(activeTags.value).every(tag => post.tags.includes(tag));
 
-  if (titleFilter.value.length > 0) {
-    filteredPosts = filteredPosts.filter(post =>
-      post.title.toLocaleLowerCase().includes(titleFilter.value.toLocaleLowerCase()),
-    );
+      return isTagIncludes && isTitleIncludes;
+    });
+  });
+
+function toggleStatusTag(tag: string) {
+  if (!activeTags.value.has(tag)) {
+    activeTags.value.add(tag);
   }
-
-  if (activeTags.value.length > 0) {
-    filteredPosts = filteredPosts.filter(post =>
-      activeTags.value.every(tag => post.tags.includes(tag)),
-    );
+ else {
+    activeTags.value.delete(tag);
   }
-
-  activePost.value = filteredPosts;
 }
-
-watch([activeTags, titleFilter], () => {
-  filteredPost();
-}, { deep: true });
-
-  function toggleStatusTag(tag: string) {
-    if (!activeTags.value.includes(tag)) {
-      activeTags.value.push(tag);
-    }
-   else {
-    const indexTag = activeTags.value.findIndex(item => item === tag);
-    activeTags.value.splice(indexTag, 1);
-    }
-  }
-
-  return { postsArray, allTags, titleFilter, activeTags, toggleStatusTag, activePost, filteredPost };
+  return { postsArray, allTags, titleFilter, activeTags, toggleStatusTag, filterPosts };
 });

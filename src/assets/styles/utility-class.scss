@@ -1,0 +1,7 @@
+.inactive-link {
+  @apply text-white cursor-pointer p-1 px-2
+}
+
+.active-link {
+  @apply text-blue bg-white/10 rounded-main text-center
+}

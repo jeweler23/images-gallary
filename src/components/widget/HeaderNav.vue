@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Navigation from './Navigation.vue';
-import Filter from './Filter.vue';
+import BaseFilter from '@/components/widget/BaseFilter.vue';
+import BaseNavigation from '@/components/widget/BaseNavigation.vue';
 </script>
 
 <template>
@@ -16,10 +16,10 @@ import Filter from './Filter.vue';
 			</h1>
 			<img src="@/assets/icons/logo.svg" alt="logo">
 			<!-- думаю подразумевалась как навигация -->
-			<Navigation class="hidden tableet:flex" />
+			<BaseNavigation class="hidden tableet:flex" />
 		</div>
 		<div class="w-full bg-white flex">
-			<Filter />
+			<BaseFilter />
 		</div>
 	</section>
 </template>

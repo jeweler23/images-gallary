@@ -17,29 +17,3 @@ export default antfu({
   },
   typescript: true,
 });
-
-// module.exports = {
-//   root: true,
-//   extends: [
-//     'eslint:recommended',
-//     'plugin:vue/vue3-essential',
-//     '@vue/eslint-config-typescript',
-//     '@antfu',
-//   ],
-//   plugins: [
-//     '@stylistic'
-//   ],
-//   parserOptions: {
-//     ecmaVersion: 'latest',
-//   },
-//   rules: {
-//     '@stylistic/indent': ['error', 2],
-//     '@stylistic/quotes': ['error', 'single'],
-//     '@stylistic/semi': ['error', 'always'],
-//     '@stylistic/max-len': ['error', {
-//       code: 80,
-//       ignoreStrings: true,
-//       ignoreTemplateLiterals: true,
-//     }],
-//   },
-// };
