@@ -3,8 +3,7 @@ import { expect, it } from 'vitest';
 import InputItem from '@/components/item/InputItem.vue';
 
 it.only('modelValue should be updated', async () => {
-const wrapper = mount(InputItem);
-
+    const wrapper = mount(InputItem);
     const input = wrapper.find('input');
 
     expect(input.element.value).toBe('');

@@ -1,8 +1,0 @@
-.custom-button {
-  background-color: $primary-color; // Использование переменной Sass
-  color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 0.25rem;
-  /* Применение классов Tailwind CSS в Sass */
-  @apply text-white rounded-lg px-4 py-2;
-}

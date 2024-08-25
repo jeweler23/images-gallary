@@ -15,10 +15,10 @@ describe('postsStore', () => {
   it('filters posts by title', () => {
     // Установка тестовых данных
     store.titleFilter = 'Цвета природы в наших руках';
-    store.filteredPost();
+    // store.filteredPost();
 
     // Проверка результата фильтрации
-    expect(store.activePost).toEqual([{
+    expect(store.filterPosts).toEqual([{
     id: 3,
     title: 'Цвета природы в наших руках',
     description: 'Каждое утро, когда я просыпаюсь в палатке, окружённой лесом и горами, я чувствую, как природа наполняет меня энергией. Величественные вершины, покрытые зелёными лесами, напоминают мне о том, как важно сохранять связь с природой. Каждый шаг по тропе — это не просто движение вперёд, это путешествие внутрь себя, где я нахожу вдохновение и силу. В такие моменты я понимаю, что настоящая красота мира скрыта в его простоте и величии.',
@@ -67,18 +67,18 @@ describe('postsStore', () => {
   });
 
   it('filters posts by tags', () => {
-    store.activeTags = ['Природа'];
-    store.filteredPost();
+    store.activeTags = new Set(['Природа']);
+    // store.filteredPost();
 
-    expect(store.activePost).toEqual(store.activePost);
+    expect(store.filterPosts).toEqual(store.filterPosts);
   });
 
   it('filters posts by title and tags', () => {
     store.titleFilter = 'Вкус лета';
-    store.activeTags = ['Искусство'];
-    store.filteredPost();
+    store.activeTags = new Set(['Искусство']);
+    // store.filteredPost();
 
-    expect(store.activePost).toEqual([
+    expect(store.filterPosts).toEqual([
       {
     id: 8,
     title: 'Вкус лета',
@@ -106,10 +106,10 @@ describe('postsStore', () => {
   it('returns all posts when no filters are applied', () => {
     // Установка тестовых данных
     store.titleFilter = '';
-    store.activeTags = [];
-    store.filteredPost();
+    store.activeTags = new Set([]);
+    // store.filteredPost();
 
     // Проверка результата фильтрации
-    expect(store.activePost).toEqual(store.postsArray);
+    expect(store.filterPosts).toEqual(store.postsArray);
   });
 });

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import TagItem from './TagItem.vue';
+import TagItem from '@/components/item/TagItem.vue';
 import type { IPost } from '@/types/post';
 
 interface Post {
