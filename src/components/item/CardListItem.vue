@@ -9,7 +9,7 @@ interface Post {
 
 const props = defineProps<Post>();
 
-const srcImage = computed(() => new URL(`../../assets/images/${props.post.image}.png`, import.meta.url).href);
+const srcImage = computed(() => new URL(`../../assets/images/${props.post.image}.webp`, import.meta.url).href);
 
 const comment = computed(() => {
   if (props.post.comments.length === 1) {

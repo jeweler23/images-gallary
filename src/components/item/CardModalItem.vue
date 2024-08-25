@@ -12,7 +12,7 @@ defineEmits<{
 	(event: 'close'): void;
 }>();
 
-const srcImage = computed(() => new URL(`../../assets/images/${props.post.image}.png`, import.meta.url).href);
+const srcImage = computed(() => new URL(`../../assets/images/${props.post.image}.webp`, import.meta.url).href);
 
 const message = ref('');
 const isMessageBig = computed(() => !(message.value.length < 251));
@@ -31,7 +31,7 @@ const comment = computed(() => {
 });
 
 function setImageCommentator(src: string) {
-	return new URL(`../../assets/images/${src}.png`, import.meta.url).href;
+	return new URL(`../../assets/images/${src}.webp`, import.meta.url).href;
 }
 </script>
 
